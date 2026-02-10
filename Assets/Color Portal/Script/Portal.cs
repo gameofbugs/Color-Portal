@@ -9,6 +9,7 @@ public class Portal : MonoBehaviour
 
     public void Enter()
     {
+        AudioManager.Instance.PlayPortalEnter();
         StartCoroutine(SceneTransition(portalColor.ToString()));
     }
     public void SetPortalColor(PortalColor color)
@@ -17,13 +18,13 @@ public class Portal : MonoBehaviour
     }
     IEnumerator SceneTransition(String sceneName)
     {
-        GameManager.Instance.vfx.SetActive(true);
+        GameManager.Instance.sceneTransition.SetActive(true);
         GameManager.Instance.sceneTransitionAnimator.ResetTrigger("Start");
         GameManager.Instance.sceneTransitionAnimator.SetTrigger("End");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(sceneName);
         GameManager.Instance.sceneTransitionAnimator.ResetTrigger("End");
         GameManager.Instance.sceneTransitionAnimator.SetTrigger("Start");
-        GameManager.Instance.vfx.SetActive(false);
+        GameManager.Instance.sceneTransition.SetActive(false);
     }
 }

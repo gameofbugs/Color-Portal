@@ -3,16 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - CameraPivot
+  - Outro_Cam
+  - Intro_Cam
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Environement
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Minimap
   - 
   - 
   - 

@@ -10,7 +10,13 @@ public class Interactor : MonoBehaviour
     }
 
     [Header("State (Inspector Only)")]
-    public DistortionState state = DistortionState.Normal;
+    public DistortionState state;
+
+    [Header("State (Terrain Settings)")]
+    public Vector2 terrainSize = new Vector2(50f, 50f);
+    public Vector2 grassTiling = new Vector2(0.13f, 0.11f);
+    public Vector2 soilTiling = new Vector2(0.5f, 0.5f);
+    public Vector2 stoneTiling = new Vector2(0.8f, 0.8f);
 
     [Header("Wave Settings")]
     public float speed = 3f;
@@ -25,8 +31,23 @@ public class Interactor : MonoBehaviour
     float radius = 0f;
     DistortionState lastState;
 
+    void Start()
+    {
+        // Wait for GameManager to be ready before checking state
+        if (GameManager.Instance != null && GameManager.Instance.CurrentGameState() != GameState.Loading)
+        {
+            ForceBlackWhiteInstant();
+        }
+    }
+
     void Update()
     {
+        // Set terrain shader globals
+        Shader.SetGlobalVector("_TerrainSize", terrainSize);
+        Shader.SetGlobalVector("_GrassTiling", grassTiling);
+        Shader.SetGlobalVector("_SoilTiling", soilTiling);
+        Shader.SetGlobalVector("_StoneTiling", stoneTiling);
+
         // Center always follows this object
         Shader.SetGlobalVector(
             "_Position",
@@ -41,7 +62,7 @@ public class Interactor : MonoBehaviour
         // Detect state change from Inspector
         if (state != lastState)
         {
-            radius = 0f;          // restart wave
+            radius = 0f;
             lastState = state;
         }
 
@@ -56,10 +77,38 @@ public class Interactor : MonoBehaviour
         // Send globals
         Shader.SetGlobalFloat("_Radius", radius);
         Shader.SetGlobalFloat("_DistortionMode", (int)state);
-
         Shader.SetGlobalFloat("_RingThickness", ringThickness);
         Shader.SetGlobalFloat("_RainbowIntensity", rainbowIntensity);
         Shader.SetGlobalFloat("_RainbowSpeed", rainbowSpeed);
         Shader.SetGlobalFloat("_GlowStrength", glowStrength);
+    }
+
+    // ===== TIMELINE / GAME CONTROL METHODS =====
+
+    public void StartToBlackWhite()
+    {
+        state = DistortionState.ToBlackWhite;
+        radius = 0f;
+        lastState = state;
+
+    }
+
+    public void StartToColor()
+    {
+        state = DistortionState.ToColor;
+        radius = 0f;
+        lastState = state;
+    }
+
+    public void ForceBlackWhiteInstant()
+    {
+        state = DistortionState.ToBlackWhite;
+        radius = maxRadius;
+        lastState = state;
+    }
+    public void SetMainMenu()
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance.SwitchGameState(GameState.MainMenu);
     }
 }
