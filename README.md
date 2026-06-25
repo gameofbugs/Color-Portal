@@ -2,7 +2,7 @@
 
 > **Explore a colorless world, pass through mystical portals, and collect chromatic crystals to restore color to a dying world.**
 
-![Platform](https://img.shields.io/badge/Platform-PC%20%2F%20-blue?style=flat)
+![Platform](https://img.shields.io/badge/Platform-PC-blue?style=flat)
 ![Engine](https://img.shields.io/badge/Engine-Unity-000000?style=flat&logo=unity&logoColor=white)
 ![Language](https://img.shields.io/badge/Language-C%23-239120?style=flat&logo=csharp&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Game%20Jam%20Build-orange?style=flat)
