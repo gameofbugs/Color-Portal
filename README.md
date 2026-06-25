@@ -74,29 +74,6 @@ The world has been drained of all color. As the player, you explore a stark mono
 
 ---
 
-## 🗂️ Project Structure
-
-```
-Assets/
-├── Scripts/
-│   ├── GameManager.cs          # Crystal state, game flow
-│   ├── PlayerController.cs     # Movement, jump, dash, attack
-│   ├── PortalController.cs     # Teleportation and transition effects
-│   ├── ColorStateManager.cs    # Tracks collected colors, updates world materials
-│   ├── EnemyAI.cs              # Guardian patrol and attack logic
-│   └── UIManager.cs            # HUD, crystal counter, minimap
-├── Scenes/
-│   ├── Overworld.unity
-│   ├── RedWorld.unity
-│   ├── BlueWorld.unity
-│   └── YellowWorld.unity
-├── Shaders/                    # Color restoration shader graphs
-├── Prefabs/                    # Portal gates, crystals, enemies
-└── Audio/                      # Themed music per world + SFX
-```
-
----
-
 ## ⚙️ Tech
 
 | Tool | Use |
@@ -119,4 +96,4 @@ Assets/
 ## 👤 About
 
 Built solo by **Manoj S** for a Game Jam — one of 7 shipped Unity games.
-More projects: [gameofbugs.official.itch.io](https://gameofbugsofficial.itch.io/color-portal)
+More projects: [gameofbugs.official.itch.io](https://gameofbugsofficial.itch.io)
